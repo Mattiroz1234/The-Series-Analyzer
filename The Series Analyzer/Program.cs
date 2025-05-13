@@ -106,27 +106,27 @@ namespace The_Series_Analyzer
                     return true;
                 
                 case "d":
-                    //sortSeries(numbers);
+                    sortSeries(numbers);
                     return true;
 
                 case "e":
-                    maxValSeries(numbers);
+                    show(maxValSeries(numbers));
                     return true;
                     
                 case "f":
-                    //minValSeries(numbers);
+                    show(minValSeries(numbers));
                     return true;
 
                 case "g":
-                    //averageSeries(numbers);
+                    show(averageSeries(numbers));
                     return true;
                     
                 case "h":
-                    //lenSeries(numbers);
+                    show(lenSeries(numbers));
                     return true;
                     
                 case "i":
-                    //sumSeries(numbers);
+                    show(sumSeries(numbers));
                     return true;
 
                 case "j":
@@ -151,29 +151,51 @@ namespace The_Series_Analyzer
                 show(series[i]);
         }
 
-        //static void sortSeries(List<int> series)
-        //{
-        //    List<int> sorted = new List<int>(series.Sort());
-        //    foreach (int i in sorted)
-        //        show(i);
-        //}
+        static void sortSeries(List<int> series)
+        {
+            List<int> sorted = new List<int>(series);
+            sorted.Sort();
+            printSeries(sorted);
+        }
 
-        static void maxValSeries(List<int> series)
+        static int maxValSeries(List<int> series)
         {
             int maxVal = series[0];
             foreach (int i in series)
                 if (i > maxVal)
                     maxVal = i;
-            show(maxVal);
+            return maxVal;
         }
 
-        static void minValSeries(List<int> series)
+        static int minValSeries(List<int> series)
         {
             int minVal = series[0];
             foreach (int i in series)
                 if (i < minVal)
                     minVal = i;
-            show(minVal);
+            return minVal;
+        }
+
+        static int averageSeries(List<int> series)
+        {
+            int average = sumSeries(series)/lenSeries(series);
+            return average;
+        }
+
+        static int lenSeries(List<int> series)
+        {
+            int len = 0;
+            foreach (int i in series)
+                len++;
+            return len;
+        }
+
+        static int sumSeries(List<int> series)
+        {
+            int sum = 0;
+            foreach(int i in series)
+                sum += i;
+            return sum;
         }
 
 
@@ -189,13 +211,9 @@ namespace The_Series_Analyzer
         static void Main(string[] args)
         {
             if (args.Length < 3)
-            {
                 inputRequest();
-            }
             else
-            {
                 integrityCheck(args);
-            }
 
             menu(numbers);
         }
