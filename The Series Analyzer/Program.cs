@@ -163,7 +163,22 @@ namespace The_Series_Analyzer
         static void sortSeries(List<int> series)
         {
             List<int> sorted = new List<int>(series);
-            sorted.Sort();
+            bool isUnsort = true;
+            while(isUnsort)
+            {
+                isUnsort = false;
+                for (int i = 0; i < sorted.Count -1; i++)
+                {
+                    if (sorted[i] > sorted[i + 1])
+                    {
+                        int tmp = sorted[i];
+                        sorted[i] = sorted[i + 1];
+                        sorted[i + 1] = tmp;
+                        isUnsort = true;
+                    }    
+
+                }
+            }
             printSeries(sorted);
         }
 
