@@ -17,7 +17,7 @@ namespace The_Series_Analyzer
             while (stopper)
             { 
                 numbers.Clear();
-                Console.WriteLine("Enter a series of positive numbers.");
+                Console.WriteLine("Enter a series of at least 3 positive numbers.");
                 string input = Console.ReadLine();
                 string[] parts = input.Split(' ');
                 stopper = integrityCheck(parts);
@@ -98,39 +98,48 @@ namespace The_Series_Analyzer
                     return true;
 
                 case "b":
+                    Console.WriteLine("The series in original order:");
                     printSeries(numbers);
                     return true;
                 
                 case "c":
+                    Console.WriteLine("The series in reverse order:");
                     reversPrintSeries(numbers);
                     return true;
                 
                 case "d":
+                    Console.WriteLine("The sorted series (low to high):");
                     sortSeries(numbers);
                     return true;
 
                 case "e":
+                    Console.Write("The maximum value is: ");
                     show(maxValSeries(numbers));
                     return true;
                     
                 case "f":
+                    Console.Write("The minimum value is: ");
                     show(minValSeries(numbers));
                     return true;
 
                 case "g":
+                    Console.Write("The average of the series is: ");
                     show(averageSeries(numbers));
                     return true;
                     
                 case "h":
+                    Console.Write("The number of elements in the series is: ");
                     show(lenSeries(numbers));
                     return true;
                     
                 case "i":
+                    Console.Write("The sum of the series is: ");
                     show(sumSeries(numbers));
                     return true;
 
                 case "j":
-                     return false;
+                    Console.WriteLine("goodbye"); 
+                    return false;
 
                 default:
                     Console.WriteLine("wrong choice");
@@ -176,10 +185,10 @@ namespace The_Series_Analyzer
             return minVal;
         }
 
-        static int averageSeries(List<int> series)
+        static float averageSeries(List<int> series)
         {
-            int average = sumSeries(series)/lenSeries(series);
-            return average;
+            float average = (float)sumSeries(series)/lenSeries(series);
+            return average; 
         }
 
         static int lenSeries(List<int> series)
@@ -199,10 +208,8 @@ namespace The_Series_Analyzer
         }
 
 
-
-
-
-
+        static void show(float f)
+            { Console.WriteLine(f); }
 
         static void show(int i)
             { Console.WriteLine(i); }
@@ -210,11 +217,9 @@ namespace The_Series_Analyzer
 
         static void Main(string[] args)
         {
-            if (args.Length < 3)
+            if (args.Length < 3 || integrityCheck(args))
                 inputRequest();
-            else
-                integrityCheck(args);
-
+            
             menu(numbers);
         }
     }
